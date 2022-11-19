@@ -27,17 +27,17 @@ export class BookmarkServiceService {
 
   private bookmarks: IBookmarkModel[] = [
     {
-      title: 'Java',
+      title: 'Java (dummy data)',
       url: 'java.com',
       category: 'Java'
     },
     {
-      title: 'python',
+      title: 'python (dummy data)',
       url: 'python.com',
       category: 'Python'
     },
     {
-      title: 'C#',
+      title: 'C# (dummy data)',
       url: 'csharp.com',
       category: 'C#'
     }
