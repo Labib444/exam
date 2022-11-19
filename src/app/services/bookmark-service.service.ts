@@ -22,6 +22,9 @@ interface ICategory{
 })
 export class BookmarkServiceService {
 
+  CAT = 'categories';
+  BOOK = 'bookmarks';
+
   private bookmarks: IBookmarkModel[] = [
     {
       title: 'Java',
@@ -80,6 +83,7 @@ export class BookmarkServiceService {
       this.categories.push(newData);
     }
     console.log(this.categories)
+    //localStorage.setItem(this.CAT, JSON.stringify(this.categories));
   }
 
 }
