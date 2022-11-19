@@ -30,17 +30,17 @@
                 <input [required]="newCategoryFlag" type="text" formControlName="newCategory" placeholder="New Category Name" class="form-control" />
             </div>
             <div class="form-group" >
-                <button>Cancel</button>
-                <button (click)="submit($event)" >Save</button>
+                <button  class="btn btn-success" (click)="modal.close('Close click')" >Cancel</button>
+                <button  class="btn btn-danger" (click)="submit($event)" >Save</button>
             </div>
         </form>
 
 
 
 	</div>
-	<div class="modal-footer">
+	<!-- <div class="modal-footer">
 		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-	</div>
+	</div> -->
 </ng-template>
 
 
