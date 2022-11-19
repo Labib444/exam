@@ -1,0 +1,47 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Add Bookmark</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <form [formGroup]="bookmarkForm" >
+            <div class="form-group" >
+                <input type="text" required maxlength="30" formControlName="title" placeholder="Title" class="form-control" />
+            </div>
+            <div class="form-group" required pattern="/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig" >
+                <input type="text" formControlName="url" placeholder="Url" class="form-control" />
+            </div>
+            <div class="form-group" >                
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <select [required]="!newCategoryFlag" [disabled]="newCategoryFlag" class="form-control" name="category" id="category" 
+                        formControlName="category" [value]="'--- Select Category ---'"               
+                        >   
+                            <option selected >--- Select Category ---</option>
+                            <option *ngFor="let category of existingCategories" >{{category}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="inline" (click)="setFlagNewCategory($event)">Plus</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="newCategoryFlag" >
+                <input [required]="newCategoryFlag" type="text" formControlName="newCategory" placeholder="New Category Name" class="form-control" />
+            </div>
+            <div class="form-group" >
+                <button>Cancel</button>
+                <button (click)="submit($event)" >Save</button>
+            </div>
+        </form>
+
+
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+<button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Extra large modal</button>

@@ -1,0 +1,16 @@
+
+
+
+
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.section_1{
+    margin-bottom: 1%;
+}
+
+
