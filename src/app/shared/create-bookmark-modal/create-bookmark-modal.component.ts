@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators  } from '@angular/forms';
 import { BookmarkServiceService } from 'src/app/services/bookmark-service.service';
+
 
 @Component({
   selector: 'app-create-bookmark-modal',
   templateUrl: './create-bookmark-modal.component.html',
   styleUrls: ['./create-bookmark-modal.component.css']
 })
-export class CreateBookmarkModalComponent implements OnInit {
+export class CreateBookmarkModalComponent implements OnInit, OnChanges {
   closeResult: string = '';
   newCategoryFlag: boolean = false;
   bookmarkForm: FormGroup;
@@ -24,6 +25,13 @@ export class CreateBookmarkModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bookmarkService.getData().forEach( (x) => {
+      this.existingCategories.push(x.category)
+    })
+  }
+
+  ngOnChanges(changes: any): void {
+    this.existingCategories = [];
     this.bookmarkService.getData().forEach( (x) => {
       this.existingCategories.push(x.category)
     })
@@ -72,9 +80,15 @@ export class CreateBookmarkModalComponent implements OnInit {
       var data = this.getFormData();
       this.bookmarkService.setCategoryData(data);
       console.log(data);
+      this.modalService.dismissAll();
     }else{
       alert('Invalid Input!');
     }
+  }
+
+  close(event: any){
+    event.preventDefault();
+    this.modalService.dismissAll();
   }
 
   getFormData(){
