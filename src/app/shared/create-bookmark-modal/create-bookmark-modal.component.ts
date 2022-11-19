@@ -25,14 +25,14 @@ export class CreateBookmarkModalComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.bookmarkService.getData().forEach( (x) => {
+    this.bookmarkService.getCategoryData().forEach( (x) => {
       this.existingCategories.push(x.category)
     })
   }
 
   ngOnChanges(changes: any): void {
     this.existingCategories = [];
-    this.bookmarkService.getData().forEach( (x) => {
+    this.bookmarkService.getCategoryData().forEach( (x) => {
       this.existingCategories.push(x.category)
     })
   }
